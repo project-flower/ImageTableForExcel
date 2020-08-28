@@ -1,0 +1,2 @@
+# ImageTableForExcel
+ディレクトリの画像をテーブルにしてExcelにインポートするためのHTMLファイルを作成します。
