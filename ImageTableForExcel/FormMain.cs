@@ -16,8 +16,8 @@ namespace ImageTableForExcel
 
             try
             {
-                MainEngine.Generate(directoryName, (int)numericUpDownRowHeight.Value, out faultFiles);
-                string message = "index.html を作成しました。";
+                string fileName = MainEngine.Generate(directoryName, out faultFiles);
+                string message = (fileName + " を作成しました。");
 
                 if ((faultFiles != null) && (faultFiles.Length > 0))
                 {

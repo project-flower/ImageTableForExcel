@@ -28,37 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelRowHeight = new System.Windows.Forms.Label();
-            this.numericUpDownRowHeight = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRowHeight)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // labelRowHeight
+            // label1
             // 
-            this.labelRowHeight.AutoSize = true;
-            this.labelRowHeight.Location = new System.Drawing.Point(12, 14);
-            this.labelRowHeight.Name = "labelRowHeight";
-            this.labelRowHeight.Size = new System.Drawing.Size(90, 12);
-            this.labelRowHeight.TabIndex = 0;
-            this.labelRowHeight.Text = "Row &Height (px):";
-            // 
-            // numericUpDownRowHeight
-            // 
-            this.numericUpDownRowHeight.Location = new System.Drawing.Point(108, 12);
-            this.numericUpDownRowHeight.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numericUpDownRowHeight.Name = "numericUpDownRowHeight";
-            this.numericUpDownRowHeight.Size = new System.Drawing.Size(120, 19);
-            this.numericUpDownRowHeight.TabIndex = 1;
-            this.numericUpDownRowHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDownRowHeight.Value = new decimal(new int[] {
-            18,
-            0,
-            0,
-            0});
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(240, 43);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "ディレクトリをドロップしてください。";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormMain
             // 
@@ -66,24 +47,20 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(240, 43);
-            this.Controls.Add(this.numericUpDownRowHeight);
-            this.Controls.Add(this.labelRowHeight);
+            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.Text = "ImageTableForExcel";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.dragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.dragEnter);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRowHeight)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label labelRowHeight;
-        private System.Windows.Forms.NumericUpDown numericUpDownRowHeight;
+        private System.Windows.Forms.Label label1;
     }
 }
 
