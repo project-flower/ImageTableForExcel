@@ -55,7 +55,7 @@
             this.numericUpDownRowHeight.TabIndex = 1;
             this.numericUpDownRowHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDownRowHeight.Value = new decimal(new int[] {
-            18,
+            20,
             0,
             0,
             0});

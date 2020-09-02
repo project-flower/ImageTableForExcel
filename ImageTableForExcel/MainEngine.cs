@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using ClosedXML.Excel;
+using ClosedXML.Excel.Drawings;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Text;
 
 namespace ImageTableForExcel
 {
     public static class MainEngine
     {
-        public static void Generate(string directoryName, int rowHeight, out string[] faultFiles)
+        public static string Generate(string directoryName, int rowHeight, out string[] faultFiles)
         {
             DirectoryInfo directory;
             faultFiles = null;
@@ -21,49 +22,45 @@ namespace ImageTableForExcel
                 throw;
             }
 
-            var builder = new StringBuilder();
             var faultFilesList = new List<string>();
-            builder.AppendLine("<!DOCTYPE html>");
-            builder.AppendLine("<html>");
-            builder.AppendLine(" <head>");
-            builder.AppendLine(" </head>");
-            builder.AppendLine(" <body>");
-            builder.AppendLine("  <table><tbody>");
 
-            foreach (FileInfo fileInfo in directory.GetFiles())
+            using (var workBook = new XLWorkbook())
             {
-                try
-                {
-                    using (Image image = Image.FromFile(fileInfo.FullName))
-                    {
-                        builder.AppendFormat("  <tr><td><img src=\"{0}\"></td></tr>", fileInfo.Name);
-                        builder.AppendLine();
+                IXLWorksheet worksheet = workBook.Worksheets.Add(directory.Name);
+                int rowIndex = 1;
 
-                        for (int i = 0; i <= (image.Height / rowHeight); ++i)
+                foreach (FileInfo fileInfo in directory.GetFiles())
+                {
+                    try
+                    {
+                        using (Bitmap image = Image.FromFile(fileInfo.FullName) as Bitmap)
                         {
-                            builder.AppendFormat("  <tr><td></td></tr>", fileInfo.Name);
+                            IXLCell cell = worksheet.Cell(rowIndex, 1);
+                            // TODO : 行高さを取得する
+                            int height = rowHeight;
+                            IXLPicture picture = worksheet.AddPicture(image);
+                            picture.MoveTo(cell);
+                            rowIndex += (image.Height / height + 2);
                         }
                     }
+                    catch
+                    {
+                        faultFilesList.Add(fileInfo.Name);
+                        continue;
+                    }
+                }
+
+                try
+                {
+                    string fileName = (directory.Name + ".xlsx");
+                    workBook.SaveAs(Path.Combine(directory.FullName, fileName));
+                    faultFiles = faultFilesList.ToArray();
+                    return fileName;
                 }
                 catch
                 {
-                    faultFilesList.Add(fileInfo.Name);
-                    continue;
+                    throw;
                 }
-            }
-
-            builder.AppendLine("  </tbody></table>");
-            builder.AppendLine(" </body>");
-            builder.AppendLine("</html>");
-
-            try
-            {
-                File.WriteAllText(Path.Combine(directory.FullName, "index.html"), builder.ToString(), Encoding.UTF8);
-                faultFiles = faultFilesList.ToArray();
-            }
-            catch
-            {
-                throw;
             }
         }
     }
