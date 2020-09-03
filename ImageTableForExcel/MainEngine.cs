@@ -10,7 +10,7 @@ namespace ImageTableForExcel
 {
     public static class MainEngine
     {
-        public static string Generate(string directoryName, out string[] faultFiles)
+        public static string Generate(string directoryName, int verticalSpacing, out string[] faultFiles)
         {
             DirectoryInfo directory;
             faultFiles = null;
@@ -73,7 +73,7 @@ namespace ImageTableForExcel
                                 // Left, Top, Width, Height
                                 0, y, -1, -1);
 
-                            y += (((int)(shape.Height / rowHeight + 2)) * rowHeight);
+                            y += (((int)(shape.Height / rowHeight + 1 + verticalSpacing)) * rowHeight);
                         }
                     }
                     catch

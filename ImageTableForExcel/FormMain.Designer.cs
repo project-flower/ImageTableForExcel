@@ -28,18 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelVerticalSpacing = new System.Windows.Forms.Label();
+            this.numericUpDownVerticalSpacing = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVerticalSpacing)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // labelVerticalSpacing
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(240, 43);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ディレクトリをドロップしてください。";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelVerticalSpacing.AutoSize = true;
+            this.labelVerticalSpacing.Location = new System.Drawing.Point(12, 14);
+            this.labelVerticalSpacing.Name = "labelVerticalSpacing";
+            this.labelVerticalSpacing.Size = new System.Drawing.Size(127, 12);
+            this.labelVerticalSpacing.TabIndex = 0;
+            this.labelVerticalSpacing.Text = "Vertical &Spacing (rows):";
+            // 
+            // numericUpDownVerticalSpacing
+            // 
+            this.numericUpDownVerticalSpacing.Location = new System.Drawing.Point(168, 12);
+            this.numericUpDownVerticalSpacing.Name = "numericUpDownVerticalSpacing";
+            this.numericUpDownVerticalSpacing.Size = new System.Drawing.Size(60, 19);
+            this.numericUpDownVerticalSpacing.TabIndex = 1;
+            this.numericUpDownVerticalSpacing.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // FormMain
             // 
@@ -47,7 +56,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(240, 43);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.numericUpDownVerticalSpacing);
+            this.Controls.Add(this.labelVerticalSpacing);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FormMain";
@@ -55,13 +65,16 @@
             this.TopMost = true;
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.dragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.dragEnter);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVerticalSpacing)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelVerticalSpacing;
+        private System.Windows.Forms.NumericUpDown numericUpDownVerticalSpacing;
     }
 }
 

@@ -16,7 +16,7 @@ namespace ImageTableForExcel
 
             try
             {
-                string fileName = MainEngine.Generate(directoryName, out faultFiles);
+                string fileName = MainEngine.Generate(directoryName, (int)numericUpDownVerticalSpacing.Value, out faultFiles);
                 string message = (fileName + " を作成しました。");
 
                 if ((faultFiles != null) && (faultFiles.Length > 0))
