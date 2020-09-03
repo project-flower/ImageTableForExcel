@@ -35,10 +35,20 @@ namespace ImageTableForExcel
             try
             {
                 application = new Excel.Application();
+                application.DisplayAlerts = false;
                 workbooks = application.Workbooks;
                 workbook = workbooks.Add(Type.Missing);
                 worksheets = workbook.Sheets;
                 worksheet = (Worksheet)worksheets[1];
+
+                try
+                {
+                    worksheet.Name = directory.Name;
+                }
+                catch
+                {
+                }
+
                 float y = 0;
                 startCell = (Range)worksheet.Cells[1, 1];
                 float rowHeight = float.Parse(startCell.RowHeight.ToString());
@@ -103,13 +113,21 @@ namespace ImageTableForExcel
                     releaseComObject(workbook);
                 }
 
-                releaseComObject(workbooks);
+                if (workbooks != null)
+                {
+                    workbooks.Close();
+                    releaseComObject(workbooks);
+                }
+
+                GC.Collect();
 
                 if (application != null)
                 {
                     application.Quit();
                     releaseComObject(application);
                 }
+
+                GC.Collect();
             }
         }
 
