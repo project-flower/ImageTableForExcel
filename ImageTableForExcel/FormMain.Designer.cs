@@ -72,6 +72,7 @@
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.Text = "ImageTableForExcel";
+            this.TopMost = true;
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.dragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.dragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRowHeight)).EndInit();
