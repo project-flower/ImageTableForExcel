@@ -67,5 +67,15 @@ namespace ImageTableForExcel
                 ? DragDropEffects.All
                 : DragDropEffects.None);
         }
+
+        private void load(object sender, EventArgs e)
+        {
+            string[] args = Environment.GetCommandLineArgs();
+
+            if ((args != null) && (args.Length > 1))
+            {
+                generate(args[1]);
+            }
+        }
     }
 }
