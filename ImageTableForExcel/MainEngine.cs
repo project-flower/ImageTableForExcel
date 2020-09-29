@@ -83,7 +83,7 @@ namespace ImageTableForExcel
                     }
                     finally
                     {
-                        releaseComObject(shape);
+                        releaseComObject(ref shape);
                     }
                 }
 
@@ -102,21 +102,21 @@ namespace ImageTableForExcel
             }
             finally
             {
-                releaseComObject(shapes);
-                releaseComObject(startCell);
-                releaseComObject(worksheet);
-                releaseComObject(worksheets);
+                releaseComObject(ref shapes);
+                releaseComObject(ref startCell);
+                releaseComObject(ref worksheet);
+                releaseComObject(ref worksheets);
 
                 if (workbook != null)
                 {
                     workbook.Close();
-                    releaseComObject(workbook);
+                    releaseComObject(ref workbook);
                 }
 
                 if (workbooks != null)
                 {
                     workbooks.Close();
-                    releaseComObject(workbooks);
+                    releaseComObject(ref workbooks);
                 }
 
                 GC.Collect();
@@ -124,24 +124,22 @@ namespace ImageTableForExcel
                 if (application != null)
                 {
                     application.Quit();
-                    releaseComObject(application);
+                    releaseComObject(ref application);
                 }
 
                 GC.Collect();
             }
         }
 
-        private static void releaseComObject(object o)
+        private static void releaseComObject<T>(ref T o)
         {
-            if (o != null)
+            if (o == null)
             {
-                while (Marshal.ReleaseComObject(o) >= 0)
-                {
-                    ;
-                }
-
-                o = null;
+                return;
             }
+
+            Marshal.FinalReleaseComObject(o);
+            o = default;
         }
     }
 }
