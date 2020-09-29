@@ -115,7 +115,15 @@ namespace ImageTableForExcel
 
                 if (workbooks != null)
                 {
-                    workbooks.Close();
+                    try
+                    {
+                        workbooks.Close();
+                    }
+                    catch
+                    {
+                        // "通常使うプログラムとして設定されていません。"が表示されている場合、例外がスローされる。
+                    }
+
                     releaseComObject(ref workbooks);
                 }
 
@@ -123,7 +131,15 @@ namespace ImageTableForExcel
 
                 if (application != null)
                 {
-                    application.Quit();
+                    try
+                    {
+                        application.Quit();
+                    }
+                    catch
+                    {
+                        // "サブスクリプションの有効期限が切れています"が表示されている場合、例外がスローされる。
+                    }
+
                     releaseComObject(ref application);
                 }
 
